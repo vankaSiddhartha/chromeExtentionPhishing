@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Phishing Detector",
+  "version": "1.0",
+  "description": "Check current tab URL for phishing risks",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "notifications",
+    "storage",
+    "webRequest",
+    "webRequestBlocking"
+  ],
+  "host_permissions": [
+    "http://localhost:5000/*",
+    "https://generativelanguage.googleapis.com/*",
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+ 
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  }
+}

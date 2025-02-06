@@ -1,0 +1,144 @@
+// blocked.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Alert - Suspicious Site Blocked</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #FEF2F2;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(239, 68, 68, 0.1);
+            padding: 32px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .warning-icon {
+            width: 64px;
+            height: 64px;
+            background: #FEE2E2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: #DC2626;
+            font-size: 32px;
+        }
+
+        h1 {
+            color: #DC2626;
+            text-align: center;
+            margin: 0 0 16px;
+            font-size: 24px;
+        }
+
+        p {
+            color: #4B5563;
+            line-height: 1.6;
+            margin: 0 0 16px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 24px;
+        }
+
+        button {
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .back-button {
+            background: #DC2626;
+            color: white;
+        }
+
+        .back-button:hover {
+            background: #B91C1C;
+        }
+
+        .report-button {
+            background: #F3F4F6;
+            color: #374151;
+        }
+
+        .report-button:hover {
+            background: #E5E7EB;
+        }
+
+        .risk-details {
+            background: #FEF2F2;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+
+        .risk-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 8px 0;
+            color: #991B1B;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="warning-icon">⚠️</div>
+        <h1>Security Alert - Suspicious Site Blocked</h1>
+        <p>This website has been identified as a potential security risk by our phishing detection system.</p>
+
+        <div class="risk-details">
+            <div class="risk-item">
+                <span>⚠️</span>
+                <span>This site may be attempting to steal your personal information</span>
+            </div>
+            <div class="risk-item">
+                <span>🔒</span>
+                <span>Your security is our top priority</span>
+            </div>
+            <div class="risk-item">
+                <span>⚡</span>
+                <span>We recommend not proceeding to this site</span>
+            </div>
+        </div>
+
+        <p>If you believe this is a false positive, you can report it to us for review.</p>
+
+        <div class="buttons">
+            <button class="back-button" onclick="history.back()">Go Back (Safe)</button>
+            <button class="report-button" onclick="reportFalsePositive()">Report False Positive</button>
+        </div>
+    </div>
+
+    <script>
+        function reportFalsePositive() {
+            chrome.runtime.sendMessage({ action: 'reportFalsePositive', url: document.referrer });
+            alert('Thank you for your report. We will review this site.');
+        }
+    </script>
+</body>
+
+</html>
